@@ -1,0 +1,155 @@
+ 
+  <html>
+   <head>
+        <meta charset="UTF-8">
+        <title>Compra</title>
+           <link rel="stylesheet" href="css/Stile.css">
+           <meta name="keywords"
+content="ROUXA,ROPA,TIENDA ONLINE, ROPA VENEZUELA, ">
+        <meta name="description"
+content="Rouxa, tienda online de venta de ropa en Venezuela">
+   
+   
+    </head>
+    <script>
+    
+        
+ function Factura(){
+           // Get the checkbox
+  var checkBox = document.getElementById("isfacture");
+  // Get the output text
+  var text1 = document.getElementById("doc-identidad");
+  var text2 =  document.getElementById("type-identidad");
+  var text3 =  document.getElementById("dir-fiscal");
+  
+
+  // If the checkbox is checked, display the output text
+  if (checkBox.checked == true){
+    text1.style.display = "block";
+    text2.style.display = "block";
+    text3.style.display = "block";
+  } else {
+     text1.style.display = "none";
+    text2.style.display = "none";
+    text3.style.display = "none";
+  }
+    }
+
+      
+      </script>
+    <body>
+    
+        <div class="menu">
+             <ul>
+                <li><a href="index.php">Inicio</a></li>
+                 <li><a href="QuienesSomos.php">Quienes Somos</a></li>
+                <li><a href="FAQ.php">FAQ</a></li>
+                <li><a href="Contactanos.php">Contactos</a></li>
+             </ul>
+                
+         
+         <div class="cart">
+           
+            <a href="Page_CarritoCompras.php" class="icon-basket"></a>
+           
+           </div>
+         </div>
+        <div class="container">
+            <div class="datos-personales">
+            
+            <h1 id="title">Datos de Cliente</h1>
+            
+            <input type="text" placeholder="Razon social | Nombre y apellido" name="nombre-cliente" id="nombre-cliente" >
+            
+            <input type="text" placeholder="Número telefonico del Cliente" name="telf-cliente" id="telf-cliente" >
+            
+            <input type="text" placeholder="E-mail del Cliente" name="email-cliente" id="email-cliente" >
+            
+            <p class="check"><input  id="isfacture" type="checkbox" onclick="Factura()" > ¿Desea factura fiscal?</p>
+            
+             <select name="type-identidad" id="type-identidad" style="display: none" >
+                <option>V</option>
+                <option>E</option>
+                <option>J</option>
+                <option>P</option>
+                <option>G</option>
+                <option>Passaporte</option>
+            </select> 
+            
+            <input type="text" placeholder="Registro de informacion fiscal (RIF)" name="doc-identidad" id="doc-identidad" maxlength="30" style="display: none">
+            
+            <input type="text" placeholder="Direccion Fiscal" name="dir-fiscal" id="dir-fiscal" style="display: none" >
+            
+            <h1 id="title">Datos de Envio</h1>
+            
+             <input type="text" placeholder="Nombre y apellido del que recibe" name="receptor" id="receptor" >
+            
+            
+            <select name="type-identidad-receptor" id="type-identidad-receptor" >
+                <option>V</option>
+                <option>E</option>
+                <option>Passaporte</option>
+            </select>
+            <input type="text" placeholder="Documento de identidad del que recibe [ejemplo: 20184765]" name="doc-identidad-receptor" id="doc-identidad-receptor" maxlength="30">
+             
+            <select name="pais" id="pais">
+                <option value="">Venezuela</option>
+                <option value="">Colombia</option>
+                <option value="">Chile</option>
+                <option value="">Panama</option>
+            </select>
+            
+             <input type="text" placeholder="Telefono del que recibe" name="receptor" id="receptor" >
+            
+            <input type="text" placeholder="Estado | Departamento | Provincia" name="estado" id="estado" maxlength="30">
+              
+            <input type="text" placeholder="Ciudad" name="Ciudad" id="Ciudad" maxlength="30">
+                
+            <input type="text" placeholder="Municipio | Localidad" name="municipio" id="municipio" maxlength="200"> 
+            
+            <input type="text" placeholder="Direccion -  Barrio | Zona | Sector | Casa | Apartamento | local | Edificio" name="direccion" id="direccion" maxlength="200">
+            
+            <input type="text" placeholder="Referencia" name="ref" id="ref" maxlength="200">
+            
+             <input type="text" placeholder="Codigo Postal" name="codigo-postal" id="codigo-postal" maxlength="200">
+             
+              <input type="text" placeholder="Observaciones de envio" name="observaciones" id="observaciones" maxlength="200">
+            
+            
+        </div>
+        
+      </div>
+            <div class="container">
+               
+                   <div class="cantidad">
+           <ul>
+                    <li>
+                       <select name="talla" id="search" >
+                           
+                                <option value="L">L</option>  
+                                <option value="M">M</option>        
+                                <option value="S">S</option>  
+                              
+                       </select>
+                       
+                   </li>
+                   <li>
+                        <input type="number" max="9999" min="1" maxlength="4" value="1" name="cantidad"
+                    id="cant" >
+                        <input type="text" name="id" value="31" hidden="hidden">
+                   </li>
+                   
+           </ul>
+           <p id="dispo">
+              Disponibilidad: 20 [piezas] 
+           </p>
+                       
+            
+        </div>
+            </div>
+
+            
+       
+        
+    </body>
+</html>
