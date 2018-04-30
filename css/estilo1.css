@@ -1,0 +1,98 @@
+.page{
+    background: #888;
+}
+.container3{
+    width: 80%;
+    margin: auto;
+    background: black;
+}
+.presentacion{
+    background-image: url(imagen2.jpg);
+    max-width: 900px;
+    width: 96%;
+    margin: auto;
+    padding: 10px;
+    align-content: center;
+    
+}
+.presentacion p{
+    text-align: center;
+    font-size: 20px;
+    margin:  auto;
+}
+
+.presentacion h1{
+    font-size: 100px;
+    font-family: sans-serif;
+    text-align: center;
+    margin: 0 auto;
+    
+}
+
+.presentacion a{
+    color: yellowgreen;
+    text-decoration: none;
+    font-size: 50px;
+    font-family: monospace;
+}
+
+#entrar{
+    width: 300px;
+    padding: 10px;
+    background: black;
+    opacity: 0.6;
+    border-radius: 20px;
+    margin: auto ;
+    
+        
+}
+.promocion{
+    width: 100%;
+    background: #ccc;
+    margin: auto;
+}
+
+.promocion p{
+    font-size: 50px;
+    padding: 10px;
+    margin: auto;
+    text-align: center
+}
+.promocion h1{
+    margin: auto;
+}
+
+ #red{
+    color: red;
+    text-align: center;
+}
+
+.clientes{
+ background: #fff;
+ margin: auto;
+ display:flex;
+ flex-wrap: wrap;
+}
+
+.clientes h1{
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+}
+.cliente{
+    width: 200px;
+    height: 200px;
+    margin: auto  ;
+    background: #fff;
+    padding: 10px; 
+}
+.cliente img{
+    border-radius: 30%;
+    margin: auto;
+    
+}
+.cliente p{
+    margin: auto;
+    text-align: center;
+}
