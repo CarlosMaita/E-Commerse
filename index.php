@@ -34,7 +34,9 @@ and open the template in the editor.
                 Somos una nueva empresa Venezolana fabricantes de ropa de alta calidad y confort. <a href="QuienesSomos.php">Leer más</a>
             </p>
         </div>
-          
+          <div>
+           
+         </div>
         <div class="container">
         
          <div class="galeria">
