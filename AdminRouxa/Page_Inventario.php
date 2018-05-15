@@ -78,6 +78,7 @@ if(isset($_POST['nombre_p'])){
 <html>
     <head>
         <meta charset="UTF-8">
+         
         <title></title>
      <link rel="stylesheet" href="../css/Stile.css">
     </head>

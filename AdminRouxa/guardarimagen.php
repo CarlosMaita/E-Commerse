@@ -1,5 +1,6 @@
  <?php
  
+$iscreated=false;
 
 $archivo = "N_Producto.txt"; 
 $C = 0; 
@@ -15,11 +16,11 @@ fwrite($fp, $C, 26);
 fclose($fp); 
 
 /*El contador C sera usado para darle nombre a las imagenes de los productos*/
-
-
-        // put your code here
+if(isset($_FILES['archivo'])){
+          // put your code here
  if($_FILES["archivo"]["error"]>0){
      echo "error al cargar alchivo";
+  
  }
  else{
      $limite_kb = 500;
@@ -40,7 +41,7 @@ fclose($fp);
              
              if ($resultado){
                  echo "<p>Archivo guardado</p>";
-                 
+                 $iscreated=true;
                  
              }else{
                  echo "Error al guardar el archivo";
@@ -55,3 +56,7 @@ fclose($fp);
          echo "Archivo  excede de tamaño";
      }
  }
+    
+}
+
+  

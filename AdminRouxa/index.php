@@ -1,22 +1,23 @@
+<?php
+if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+?>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<?php
-if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-?>
+
 <html>
     <head>
         <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <title></title>
-        <link rel="stylesheet" href="../css/Stile.css">
+      <link rel="stylesheet" href="../css/StyleAdmin.css">
     </head>
     
     <body>
-        <div class="page">
-      
+       
         <?php
             
             // put your code here
@@ -70,16 +71,16 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
         if (isset($_SESSION['ACCESO'])){
             //hay acceso 
             ?>
-             <div class="container">
-                <h1 id="letra1"> Indice de paginas</h1>     
-                <h2 id="letra1">Inventario <a href="Page_Inventario.php">Aqui</a></h2>
-                <h2 id="letra1">Añadir producto <a href="Page_AddProducto.php">Aqui</a></h2>
-                  <h2 id="letra1">Busqueda de pedidos<a href="buscador_pedido.php">Aqui</a></h2>
-                    <h2 id="letra1">Empaquetado de pedidos<a href="Empaquetado.php">Aqui</a></h2>
-                      <h2 id="letra1">Envio de pedidos<a href="Envios.php">Aqui</a></h2>
-                        <h2 id="letra1">Fallas de Sistema<a href="Falla.php">Aqui</a></h2>
+             <div class="page1">
+             <h1 id="block-main"> Indice de paginas</h1>     
+                <h2 id="block"><a href="Page_Inventario.php">Inventario</a></h2>
+                <h2 id="block"><a href="Page_AddProducto.php">Añadir producto</a></h2>
+                  <h2 id="block"><a href="buscador_pedido.php">Busqueda de pedidos</a></h2>
+                    <h2 id="block"><a href="Empaquetado.php">Empaquetado de pedidos</a></h2>
+                      <h2 id="block"><a href="Envios.php">Envio de pedidos</a></h2>
+                        <h2 id="block"><a href="Falla.php">Fallas de Sistema</a></h2>
                 
-                <h2 id="letra1"><a href="Cerrar_Session.php">Cerrar Session</a></h2>
+                <h2 id="block-close"><a href="Cerrar_Session.php">Cerrar Session</a></h2>
                 
              </div>
             <?php
@@ -87,16 +88,15 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
             //No hay acceso
             ?>
             
-         <h1 id="top">Bienvenido a la Administracion de Rouxa</h1>
-        <div class="container">
-            
-            <form action="index.php" method="POST">
-            <p><input id="text" type="text" name="correo" placeholder="Nombre"></p>
-            <p><input id="text" type="password" name="clave" placeholder="Clave"></p>
-            <p><input id="boton" type="submit" value="Ingresar"></p>
+        <div class="page2">
         
-        </form>
-       
+             <h1 id="top">Bienvenido a la Administración de Rouxa</h1>
+            <form  class="casillero" action="index.php" method="POST">
+            
+            <input id="text" type="text" name="correo" placeholder="Usuario">
+            <input id="text" type="password" name="clave" placeholder="Contraseña">
+            <input id="boton-casillero" type="submit" value="Entrar">
+            </form>
         </div>
            
             <?php
@@ -104,8 +104,5 @@ if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
         
         ?>
     
-               
-            <p>Creado por Eutuxia</p>
-        </div>
     </body>
 </html>

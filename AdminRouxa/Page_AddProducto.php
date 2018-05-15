@@ -29,11 +29,27 @@ and open the template in the editor.
          </h1>
          
            <form action="AddProducto.php" method="POST" enctype="multipart/form-data">
-            <p><input id="text" type="text" name="nombre_p" placeholder="Nombre de producto" autocomplete="off"></p>
+            <p><input id="text" type="text" name="nombre_p" placeholder="Nombre del producto" autocomplete="off"></p>
                         
            <p><textarea name="descripcion" id="descripcion" cols="30" rows="10" placeholder="Descripcion" maxlength="250"></textarea></p>
-           <p><input id="text" type="color" name="color"></p>
            
+            <p>
+                <select name="genero" id="text">
+                    <option value="1">Femenino</option>
+                    <option value="2">Masculino</option>
+                    <option value="3">Unisex</option>
+                </select>
+            </p>
+           
+            <p>
+                <select name="tipo" id="text">
+                    <option value="franela">Franela</option>
+                    <option value="chemise">Chemise</option>
+                    <option value="pantalon">Pantalon</option>
+                    <option value="zapatos">Zapatos</option>
+                </select>
+            </p>
+                      
            <p><input id="text" type="number" name="precio" placeholder="Precio [Bs]"></p> 
            
            <p>Imagen Principal (Menor a 500 kbyte) <input type="file" name="archivo" ></p>

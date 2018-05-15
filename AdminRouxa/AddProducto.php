@@ -9,15 +9,16 @@
 require_once '../Common/conexion.php';
 include 'guardarimagen.php';
 
+if ($iscreated){
 //LECTURA DE VARIABLES 
 $nombre_p = $_POST['nombre_p'];
 $descripcion =  $_POST['descripcion'];
-$color =  $_POST['color'];
+$genero= $_POST['genero'];
+$tipo=$_POST['tipo'];
 $precio =  $_POST['precio'];
 
 //ESCRIBE EL COMANDO SQL
-$sql = "INSERT INTO PRODUCTO (NOMBRE_P,DESCRIPCION, COLOR,PRECIO,IMAGEN) 
-	VALUES ('$nombre_p', '$descripcion',  '$color', '$precio','$archivo' )";
+$sql = "INSERT INTO `PRODUCTO`(`NOMBRE_P`, `DESCRIPCION`, `GENERO`, `TIPO`, `PRECIO`, `IMAGEN`) VALUES ('$nombre_p','$descripcion','$genero','$tipo','$precio','$archivo')";
 
 
 if ($conn->query($sql) === TRUE) {
@@ -26,6 +27,10 @@ if ($conn->query($sql) === TRUE) {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-
+}else{
+    echo 'producto no registrado, ocurrio un error'; 
+}
 
 $conn->close();
+
+
