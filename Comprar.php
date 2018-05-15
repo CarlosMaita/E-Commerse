@@ -1,21 +1,20 @@
 <?php
 
 
-include 'Common/conexion.php';
+include_once 'Common/conexion.php';
 
 
 
 //LECTURA DE VARIABLES 
-$nombre_cliente =$_POST['nombre-cliente'];
-$telf_cliente=$_POST['telf-cliente'];
-$email_cliente=$_POST['email-cliente'];      
+$nombre_cliente =$_SESSION['nombre-cliente'];
+$telf_cliente=$_SESSION['telf-cliente'];
+$email_cliente=$_SESSION['email-cliente'];      
+$monto =  $_SESSION['total'];
 
-
-$monto=  $_SESSION['total'];
 if(isset($_POST['isfacture'])){
-    $razon=$_POST['razon-social'];  
-    $identidad=$_POST['type-identidad'].'-'.$_POST['doc-identidad'];  
-    $dir_fiscal=$_POST['dir-fiscal'];
+    $razon=$_SESSION['razon-social'];  
+    $identidad=$_SESSION['type-identidad'].'-'.$_SESSION['doc-identidad'];  
+    $dir_fiscal=$_SESSION['dir-fiscal'];
 }else{
     $razon='NULL';  
     $identidad='NULL';  
@@ -139,18 +138,18 @@ if ($conn->query($sql2) === TRUE) {
              
    }
 
-    $receptor=$_POST['receptor'];
-    $receptor_ci = $_POST['type-identidad-receptor'].'-'.$_POST['doc-identidad-receptor'] ;
-    $receptor_tel=$_POST['telf-receptor'];
+    $receptor=$_SESSION['receptor'];
+    $receptor_ci = $_SESSION['type-identidad-receptor'].'-'.$_SESSION['doc-identidad-receptor'] ;
+    $receptor_tel=$_SESSION['telf-receptor'];
 //direccion
-    $pais=$_POST['pais'];
-    $estado=$_POST['estado'];
-    $ciudad=$_POST['ciudad'];
-    $municipio=$_POST['municipio'];  
-    $parroquia=$_POST['parroquia'];      
-    $direccion = $_POST['direccion'].', '.$_POST['ref'];
-    $codigo_postal=$_POST['codigo-postal'];
-    $observaciones=$_POST['observaciones'];
+    $pais=$_SESSION['pais'];
+    $estado=$_SESSION['estado'];
+    $ciudad=$_SESSION['ciudad'];
+    $municipio=$_SESSION['municipio'];  
+    $parroquia=$_SESSION['parroquia'];      
+    $direccion = $_SESSION['direccion'].', '.$_POST['ref'];
+    $codigo_postal=$_SESSION['codigo-postal'];
+    $observaciones=$_SESSION['observaciones'];
 
 
 

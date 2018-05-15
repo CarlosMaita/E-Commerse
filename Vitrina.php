@@ -1,8 +1,45 @@
 <?php
-    session_start();
+
 include 'Common/conexion.php';
 
-   
+$publicidad="¡Compra Los mejores productos!";
+
+if(isset($_GET['genero'])){
+    $genero=$_GET['genero'];
+    switch($genero){
+        case '1':
+              $publicidad="¡Compra los mejores productos para Damas!";
+            break;
+        case '2': 
+              $publicidad="¡Compra los mejores productos para Caballeros!";
+            break;
+            
+    }
+    
+}else{$genero=3;}
+
+if(isset($_GET['tipo'])){
+    $tipo=$_GET['tipo'];
+    switch($tipo){
+        case 'franela':
+             $publicidad="¡Compra las mejores Franelas!";
+            break;
+        case 'chemise':
+             $publicidad="¡Compra las mejores Chemises!";
+            break;
+        case 'pantalon':
+             $publicidad="¡Compra Los mejores Pantalones!";
+            break;
+        case 'zapatos':
+             $publicidad="¡Compra Los mejores Zapatos!";
+            break;
+    }
+    
+}else{
+    $tipo='null';
+}
+
+
 ?>
 
 <!doctype html>
@@ -10,13 +47,12 @@ include 'Common/conexion.php';
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="desciption" content="Rouxa, Tienda virtual de Ropa para Damas, Caballeros y Niños.">
     <meta name="keywords" content="Rouxa, Ropa, Damas, Caballeros, Zapatos, Tienda Virtual">
     <meta name="author" content="Eutuxia, C.A.">
     <meta name="application-name" content="Tienda Virtual de Ropa, Rouxa." />
-     <link rel="stylesheet" href="css/style-main.css">
+  <link rel="stylesheet" href="css/style-main.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <!-- Font -Awesome -->
@@ -34,12 +70,44 @@ include 'Common/conexion.php';
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             
-            <li class="nav-item">
+            <?php
+            
+                  switch($genero){
+                      case '1':
+                         
+                          ?> 
+                          <li class="nav-item active ">
               <a class="nav-link" href="vitrina.php?genero=1">Damas</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="vitrina.php?genero=2">Caballeros</a>
+                          <?php
+                          break;
+                    
+                      case '2':
+                         
+                           ?> 
+                          <li class="nav-item ">
+              <a class="nav-link" href="vitrina.php?genero=1">Damas</a>
             </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="vitrina.php?genero=2">Caballeros</a>
+                          <?php
+                          break;
+                      default: 
+                             ?>          
+                              <li class="nav-item ">
+              <a class="nav-link" href="vitrina.php?genero=1">Damas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="vitrina.php?genero=2">Caballeros</a> 
+                               <?php
+                          break;  
+                  }
+                  
+             
+                   ?> 
+                                     
             <li class="nav-item">
               <a class="nav-link" href="Seguidor.php">Compras</a>
             </li>
@@ -60,7 +128,7 @@ include 'Common/conexion.php';
         </div>
       </div>
     </nav>
-
+    
     <nav class="navbar-2 navbar-expand-lg navbar-primary bg-ligth d-none d-lg-block justify-content-center">
       <div class="container">
         <div class="collapse navbar-collapse justify-content-center">
@@ -82,77 +150,84 @@ include 'Common/conexion.php';
       </div>
     </nav>
 
-    <section class="container-fluid principal d-flex flex-column align-items-end justify-content-end pr-4 pb-5">
-      <h1 class="display-2 text-muted">Rouxa</h1>
-      <p class="font-italic text-white">Comodidad, Confort, Estilo, Vanguardia.</p>
-    </section>
-
     <div class="jumbotron mb-0">
-      <h1 class="display-4">Seguimiento de una compra</h1>
-      <p class="lead">Cada compra realizada en Rouxa posee un ID único, y solo se genera al momento de comprar. ¡Procure no extraviarlo! </p>
+      <h1 class="display-4"><?php echo $publicidad;?></h1>
+      <p class="lead">Dentro de la vitrina de Rouxa podras encontrar franelas, chemises, pantalones, zapatos y accesorios para damas y caballeros.</p>
       <hr class="my-4">
-      <p>La forma de usar el IDCOMPRA es mediante el seguidor de pedido que se encuetra en el menu principal en "Compras". Alli, podra visualizar el estatus de un pedido, el número de guia (una vez que se envia el paquete) e información de la compra.</p>
-     
     </div>
-   
-   <section class="principal2 container-fluid d-flex flex-column align-items-end justify-content-end pr-4 pb-3">
-     <h1 class="display-4 text-light">La familia es lo más importante</h1>
-     <p class="font-italic text-muted h5">Creemos firmemente que tu familia es lo más importante para ti.</p>
-   </section>
 
-   <div class="jumbotron bg-dark mb-0">
-     <h1 class="display-5 text-muted">¡Disfruta de Nuestras Promociones!</h1>
-     <hr class="my-4">
-     <p class="lead text-white-50">Envios gratis, precios al Mayor, Promociones Especiales y ¡Mucho más!</p>
-     <a class="btn btn-secondary disabled btn-lg mt-3" href="FAQ.php?id=7" role="button">Promociones</a>
-   </div>
-   
-   
-
-   <article class="container my-5">
-     
-     <div class="card-deck">
+ 
+    
        <?php 
-                     
-     $sql = "SELECT * FROM PRODUCTO ORDER BY Rand() LIMIT 3";
+    
+     $offset=0;
+     $void=false;
+     $numProd=3;
+     $rand=rand();
+      
+      while(!$void){
+          
+       $sql = "SELECT * FROM PRODUCTO  ORDER BY Rand($rand) LIMIT $numProd OFFSET $offset";
+               
+        if (isset($_GET['genero'])){
+            if (!empty($genero)){
+                $sql_genero='WHERE GENERO='.$genero;
+                $sql = "SELECT * FROM PRODUCTO $sql_genero ORDER BY Rand($rand) LIMIT $numProd OFFSET $offset";
+            }
+        } 
+        if( isset($_GET['tipo'])){
+
+            if (!empty($tipo)){
+            $sql_tipo="WHERE TIPO='$tipo'"; 
+            $sql = "SELECT * FROM PRODUCTO $sql_tipo  ORDER BY Rand($rand) LIMIT $numProd OFFSET $offset";    
+            }
+
+        }
+
+          
      $result = $conn->query($sql);
-     if ($result->num_rows > 0) {
+     $cant=$result->num_rows;          
+     if ($cant > 0) {
+        
+         ?> 
+    <article class="container my-5">
+      <div class="card-deck" >
+               <?php
+         
      // output data of each row
         while($row = $result->fetch_assoc()) {
             
            ?>
-       <div class="card" style="max-width: 100%; height: auto;">
+       <div class="card" >
          <a href="Page_detalle.php?id=<?php echo $row['IDPRODUCTO']; ?>"><img class="card-img-top img-fluid" src="imagen/<?php echo $row['IMAGEN']; ?>" alt="<?php echo $row['NOMBRE_P']; ?>"></a>
          <div class="card-body">
            <h5 class="card-title"><?php echo $row['NOMBRE_P']; ?></h5>
-           <p class="card-text">Excelente para un paseo por la ciudad, el parque o el centro comercial. 100% Algodón.</p>
            <p class="card-text"><small class="text-muted">Precio: <?php echo number_format($row['PRECIO'], 2, ',', '.'); ?>  Bs</small></p>
          </div>
        </div>
         <?php
             }
-        } else {
-
-            echo " <p>Aun no existen productos en Vitrina</p>";
-        }?>
-     </div>
-   </article>
+          for ($i=0; $i<$numProd-$cant;$i++){
+              echo '<div class="card" style="border:none"></div>';
+         }
+         ?>
+             </div>
+       </article>
+         <?php
+         $offset=$offset+$numProd;
+        } 
+        else {
+            $void=true;
+        }
+      }
+      ?>
+     
    
-  
-    <div class="jumbotron mb-0">
-      <h1 class="display-4">¡Se un Vendedor Rouxa!</h1>
-      <p class="lead">Podrás vender nuestros productos sin tener que realizar alguna inversión.</p>
-      <hr class="my-4">
-      <p>Solo tendrás que dar tu código de Vendedor Rouxa a tu cliente, y este comprará a tu nombre los articúlos que desee.</p>
-      <a class="btn btn-secondary btn-lg disabled mt-3" href="" role="button">Proximamente</a>
-    </div>
 
-
- <!--
+     <!--
 Pie de Pagina
  !-->     
 <?php include_once 'Pie.php';?>
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -161,12 +236,3 @@ Pie de Pagina
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-

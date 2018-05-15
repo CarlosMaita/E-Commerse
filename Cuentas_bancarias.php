@@ -1,6 +1,6 @@
  <?php
              // put your code here  
-        session_start();
+session_start();
 
 require_once ('Common/mercadopago.php');
 
@@ -9,163 +9,153 @@ $mp = new MP('677284083290958', 'qKu7qUKA72vSpmnQfScH7WNCovUvRznx');
 $mp->sandbox_mode(FALSE);           
 
 if ($_POST){
-    
-$_SESSION['nombre-cliente']=$_POST['nombre-cliente'];
-$_SESSION['telf-cliente']=$_POST['telf-cliente'];
-$_SESSION['email-cliente']=$_POST['email-cliente']; 
-$_SESSION['razon-social']=$_POST['razon-social'];  
-$_SESSION['type-identidad']=$_POST['type-identidad'];  
-$_SESSION['doc-identidad']=$_POST['doc-identidad'];
-$_SESSION['dir-fiscal']=$_POST['dir-fiscal'];
+
+$_SESSION['nombre-cliente']=str_replace("'",".",$_POST['nombre-cliente']);
+$_SESSION['telf-cliente']=str_replace("'",".",$_POST['telf-cliente']);
+$_SESSION['email-cliente']=str_replace("'",".",$_POST['email-cliente']); 
+$_SESSION['razon-social']=str_replace("'",".",$_POST['razon-social']);  
+$_SESSION['type-identidad']=str_replace("'",".",$_POST['type-identidad']);  
+$_SESSION['doc-identidad']=str_replace("'",".",$_POST['doc-identidad']);
+$_SESSION['dir-fiscal']=str_replace("'",".",$_POST['dir-fiscal']);
 
 //datos de envio    
-$_SESSION['receptor']=$_POST['receptor'];
-$_SESSION['type-identidad-receptor']=$_POST['type-identidad-receptor'];
-$_SESSION['doc-identidad-receptor']=$_POST['doc-identidad-receptor'];    
-$_SESSION['telf-receptor']=$_POST['telf-receptor'];   
+$_SESSION['receptor']=str_replace("'",".",$_POST['receptor']);
+$_SESSION['type-identidad-receptor']=str_replace("'",".",$_POST['type-identidad-receptor']);
+$_SESSION['doc-identidad-receptor']=str_replace("'",".",$_POST['doc-identidad-receptor']);    
+$_SESSION['telf-receptor']=str_replace("'",".",$_POST['telf-receptor']);   
     
 //direccion
-$_SESSION['pais']=$_POST['pais'];
-$_SESSION['estado']=$_POST['estado'];
-$_SESSION['ciudad']=$_POST['ciudad'];
-$_SESSION['municipio']=$_POST['municipio'];  
-$_SESSION['parroquia']=$_POST['parroquia'];      
-$_SESSION['direccion']=$_POST['direccion'];
-$_SESSION['ref']=$_POST['ref'];
-$_SESSION['codigo-postal']=$_POST['codigo-postal'];      
+$_SESSION['pais']=str_replace("'",".",$_POST['pais']);
+$_SESSION['estado']=str_replace("'",".",$_POST['estado']);
+$_SESSION['ciudad']=str_replace("'",".",$_POST['ciudad']);
+$_SESSION['municipio']=str_replace("'",".",$_POST['municipio']);  
+$_SESSION['parroquia']=str_replace("'",".",$_POST['parroquia']);      
+$_SESSION['direccion']=str_replace("'",".",$_POST['direccion']);
+$_SESSION['ref']=str_replace("'",".",$_POST['ref']);
+$_SESSION['codigo-postal']=str_replace("'",".",$_POST['codigo-postal']);     
+$_SESSION['observaciones']=str_replace("'",".",$_POST['observaciones']);      
+  
 
 include 'Comprar.php';
+
+    
+//Enviar mail
+$destino=$_SESSION['email-cliente'];
+$titulo="Compra en Rouxa";
+
+$contenido = '<html>
+<head>
+<title>Rouxa</title>
+</head>
+<body>
+<h1>Compra en rouxa</h1>
+<p>Un saludo cordial,</p>
+<p>Agradecemos tu compra realizada en nuestra tienda, Recuerda que puedes hacerles seguimiento a traves del siguiente ID.</p> 
+<h4> IDCOMPRA: '. md5($CS).'</h4>
+<p>Que tenga un Feliz Dia.</p>
+</body>
+</html>';    
+$headers = "From: Rouxa <Rouxavzla@gmail.com>" . "\r\n";    
+$headers = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+    
+    mail($destino, $titulo, $contenido, $headers);
+    
 }
 
-
-
-
 ?>
-  <html>
-   <head>
-        <meta charset="UTF-8">
-         <script src="https://www.paypalobjects.com/api/checkout.js"></script>
-        <title>Compra</title>
-            <title>Rouxa</title>
-           <link rel="stylesheet" href="css/Stile.css">
-             <link rel="shortcut icon" href="imagen/Logo_principal.ico">
-    </head>
-           
-      <script>
-          
-        function validacion(){
+
+
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <meta name="desciption" content="Rouxa, Tienda virtual de Ropa para Damas, Caballeros y Niños.">
+    <meta name="keywords" content="Rouxa, Ropa, Damas, Caballeros, Zapatos, Tienda Virtual">
+    <meta name="author" content="Eutuxia, C.A.">
+    <meta name="application-name" content="Tienda Virtual de Ropa, Rouxa." />
+     <link rel="stylesheet" href="css/style-main.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <!-- Font -Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.11/css/all.css" integrity="sha384-p2jx59pefphTFIpeqCcISO9MdVfIm4pNnsL08A6v5vaQc4owkQqxMV8kg4Yvhaw/" crossorigin="anonymous">
+
+    <title>Rouxa-Carrrito de Compras</title>
+  </head>
     
-    var s1=document.getElementById('titular').value;
-    var s2=document.getElementById('doc-identidad').value;
-    var s3=document.getElementById('correo').value;
-    var s4=document.getElementById('bancoE').value;
-    var s5=document.getElementById('bancoR').value;
-    var s6=document.getElementById('ref').value;        
+  <script>
+        function deshabilitaRetroceso(){
+    window.location.hash="no-back-button";
+    window.location.hash="Again-No-back-button" //chrome
+    window.onhashchange=function(){window.location.hash="no-back-button";}
+            }   
+        
+         var band=false;
+       
+         function ven(){
+             if(!band){
+                 band=!band;
+                 document.getElementById('falla-comentario').style.display='block'; 
+             }else{
+                 band=!band;
+                  document.getElementById('falla-comentario').style.display='none';  
+                  document.getElementById('comentario').value='';
+             }
+             
             
-    if (s1==null || s1.length==0){
-        alert("Por favor, registre el nombre del titular de la cuenta bancaria.");
-        return false;
-    }
-    else if (s2==null|| s2.length==0){
-        alert("Por favor, registre su documento de identidad.");
-        return false;
-    }
-    else if (s3==null|| s3.length==0){
-       alert("Por favor, registre un correo electronico de contacto.");
-        return false;
-    }
-    else if (s4==null|| s4.length==0){
-        alert("Por favor, registre el banco emisor(Desde donde nos ha transferido).");
-        return false;
-    }        
-    else if (s5==null|| s5.length==0){
-         alert("Por favor, registre el banco receptor(A que banco nos ha transferido).");
-        return false;
-    }
-    else if (s6==null|| s6.length==0){
-         alert("Por favor, registre el numero de referencia bancaria.");
-        return false;
-    }
-    
-            
-    return true;
-}    
-        </script>
-    <body>
-        <div class="page">
-        <div class="container">
-            <p class="texto-msn-MP"> Usted ha realizado la solicitud de compra de los productos que se muestran en la lista con el IDCOMPRA* que se muestra. Para continuar, realice el pago total del carrito de compras a traves de la plataforma de cobranza Mercado pago.<br>
-                               
-             <br>(*) Para conocer el estatus de su pedido inserte el IDCOMPRA en la ventana de seguimiento, ubicado en la pestaña "Compras" en  el menu principal. El IDCOMPRA fue enviado al correo registrado en los datos de cliente. </p>     
-             <p id="idcompra">                   
-           IDCOMPRA: <?PHP 
+         }
+         
+        
+         
+         function confirma(){
+             r=confirm("¿Esta usted seguro?");
+             return r;
+         }
+        
+    </script>
+  <body  onload="deshabilitaRetroceso()">
+<!--
+
+ Inicio de codigo.
+ !-->
+   
+
+    <div class="jumbotron mb-0">
+      <h1 class="display-4">¡Felicidades por tu Compra! </h1>
+      <p class="lead">Usted ha realizado la compra de manera existosa. Para continuar, realice el pago total del carrito de compras a traves de la plataforma de cobranza Mercado pago.</p>
+      
+      <hr class="my-4">
+      <p>¡Importante!, El seguimiento de su pedido lo podra realizar con el IDCOMPRA, asegurese de guardar dicho ID en un lugar seguro y pueda recordar.</p>
+      
+    <div class="p-3 mb-2 bg-danger text-white">
+           <p class="text-center mt-3"><?PHP 
                  if($_POST){
                      echo md5($CS); 
                  }else{
-                     echo 'error';
+                     echo 'Error: ID No generado';
                  }
-                 ?>
-            </p>
-                   
-           
-             <ul class="carrito-compras">
-            <li>
-                <ul id="linea-main">
-                <li>...</li>
-                <li>Producto</li>
-                <li>IDproducto</li>
-                <li>Talla</li>
-                <li>Cantidad</li>
-                <li>...</li>
-                </ul>
-            </li>
-          
-                  <?php
-       if(isset($_SESSION['carrito'])){
-           $datos=$_SESSION['carrito'];
-           $total=0;
-         
-           for($i=0;$i<count($datos);$i++){
-             ?>
-            <li>
-                <ul id="linea-articulo">
-                    <li></li>
-                        <li><?php echo $datos[$i]['Nombre'];?></li>
-                        <li><?php echo $datos[$i]['Talla']?></li>
-                        <li><?php echo $datos[$i]['Precio'];?></li>
-                        <li><?php echo $datos[$i]['Cantidad'];?></li>
-                        <li></li>
-                </ul>
-                
-                
-            </li>
-          <?php  $total=$datos[$i]['Cantidad']*$datos[$i]['Precio'] + $total;
-               
-           } 
-           
-            }else{
-           echo '<center><h2>No hay productos añadidos en el carrito</h2> </center>';
+                 ?></p>
+      </div>
+      </div>
+ 
+    
+     <?php
+            if (!empty($CS) and isset($_POST['nombre-cliente'])){
+                  $id_mp=md5($CS);
+                  $cliente_mp=$_POST['nombre-cliente'];
+        
             }
-          ?>
             
-        </ul>
-            
-           <h1 id="letra1">Monto Total: <?php 
-               if (isset($_SESSION['total'])){
-                   echo number_format( $_SESSION['total'], 2,',','.' );
-               }else{
-                   echo '0';
+            if (isset($_SESSION['total'])){
+                   $total=$_SESSION['total'];
                }
                
-              ?> bs</h1>
-            </div>
             
-            <?php
-            
-            $id_mp=md5($CS);
-            $cliente_mp=$_POST['nombre-cliente'];
-            
-            if (isset($total) and isset($_POST['nombre-cliente']) and isset($_POST['email-cliente'])){
+            if (!empty($total) and isset($_POST['nombre-cliente']) and isset($_POST['email-cliente'])){
             $preference_data = array(
                 "items" => array(
                     array(
@@ -191,93 +181,41 @@ include 'Comprar.php';
 
             $preference = $mp->create_preference($preference_data);
             
+            ?>
+          
+                <center>
+                  <a href="<?php echo $preference['response']['init_point']; ?>" id="boton-mercadopago" class="boton-exp" >Pagar por Mercado Pago</a>
+              </center>
+               
+            <?php
             }    
             ?>
                 
-             
-            <div class="container">
-              <center>
-                  <a href="<?php echo $preference['response']['init_point']; ?>" id="boton-mercadopago">Pagar por Mercado Pago</a>
-              </center>
-              
-            </div>
-          
-            
-            <!--Comentario en HTML 
+  
+<!--
+Fin  de codigo.
+ !-->  
+   
 
-            
-            <div class="container">
-                 
-            <p class="texto-msn">Banco Mercantil <br>
-             Titular: Rouxa.CA <br>
-             RIF: j-xxxxxxxxx-x <br>
-             N° cuenta: 010592827265287282xxxx <br>
-             Correo: RouxaVzla@gmail.com <br> 
-            </p>
-            </div>
-            
-            <datalist id="bancos-emisores"> 
-                <option value="BANCO MERCANTIL"></option>
-                <option value="BANESCO"></option>
-            </datalist>
-            <datalist id="bancos-receptores"> 
-                <option value="BANESCO"></option>
-                <option value="BANCO MERCANTIL"></option>
-                <option value="BANCO PROVINCIAL"></option>
-                <option value="BANCO DE VENEZUELA"></option>
-                <option value="BANCO BICENTENARIO"></option>
-                <option value="BOD"></option>
-                <option value="BANCARIBE"></option>
-                <option value="BNC"></option>
-                <option value="BANCO EXTERIOR"></option>
-                <option value="100% BANCO"></option>
-               
-            </datalist>
-            
-             <form action="Imprimir.php" method="POST"  onsubmit="return validacion()">
-             
-             <div class="container">
-            
-            <div class="datos-personales">
-                
-            <input type="text" placeholder="Titular de la cuenta" name="titular" id="titular" >
-            
-            <input type="text" placeholder="Documento de identidad [ejemplo: V-20184865, J-34567645-3]" name="doc-identidad" id="doc-identidad" maxlength="15">
-            
-            <input type="text" placeholder="Correo" name="correo" id="correo" maxlength="50" >
-            
-            <input type="search" list="bancos-emisores" placeholder="Banco Emisor" name="bancoE" id="bancoE" maxlength="150">
-            <input type="search" list="bancos-receptores" placeholder="Banco Receptor" name = "bancoR" id = "bancoR" maxlength="150">
-            <input type="text" placeholder="Referencia bancaria" name = "ref" id = "ref" maxlength="150">
-            </div>
-                 <ul  class="ok-cancel">
-                    <li></li>
-                    <li><a href="Page_Compra.php" id="boton6">Atras</a></li>
-                   <li>
+ <!--
+Pie de Pagina
+ !-->     
+<?php include_once 'Pie.php';?>
 
-                    <input type="submit" id="boton6" value="Imprimir">  
-                   </li>
-                   <li>
-                       <a href="index.php" id="boton6">Cancelar</a>
-                   </li>
-                   
-                   <li></li>
-               </ul>
-             </div>
-              </form>
-            -->  
-          
-             <div class="container">
-             <ul class="redes-sociales">
-                 <li> <a href="https://www.instagram.com/rouxavzla/" class="icon-instagram"></a>
-           </li>    
-            <li> <a href="https://www.facebook.com/RouxaVzla/" class="icon-facebook-squared"></a>
-           </li>
-             </ul>
-         </div>
-        </div>
-        <?php 
-        include ('pie.php');
-        ?>
-    </body>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  </body>
 </html>
+
+
+<?php
+session_destroy();
+?>
+  
+ 
+
+  
