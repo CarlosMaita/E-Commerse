@@ -114,26 +114,6 @@ form p{
 }
 
 
-#boton6{
-
-    border-radius: 6px;
-    font-size: 15px;
-    font-family: monospace;
-    color: #ffffff;
-    background: #900;
-    display: inline-block;
-    padding: 15px;
-    text-decoration: none;
-    border: 0px;
-    cursor: pointer;
-    width: 20vw;
-    text-align: center;
-    margin: 10px;
-}
-
-#boton6:hover{
-    background: #600;
-}
 
 #checkbox{
     width: 20px;
@@ -299,7 +279,6 @@ form p{
     background:  #900;
     display: flex;
     flex-flow: wrap;
-    
 }
 
 .galeria .producto{
@@ -418,7 +397,7 @@ form p{
     margin: auto;
 }
 
-
+/* inicio de detalle*/
 .detalle{
     width: 100%;
     overflow: hidden;
@@ -428,15 +407,6 @@ form p{
     
 }
 
-#texto{
-    width: 40%;
-    margin: 10px;
-    border: 1px solid;
-    border: 1px solid #eee;
-    border-radius: 6px;
-    overflow: hidden;
-    
-}
 .detalle #imagen{
     width: 40%;
     margin: auto;
@@ -452,6 +422,17 @@ form p{
     padding: 10px;
     font-family: sans-serif;
     color: #990000;
+    
+}
+
+
+.detalle #texto{
+    width: 40%;
+    margin: 10px;
+    border: 1px solid;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    overflow: hidden;
     
 }
 
@@ -673,7 +654,28 @@ list-style-type: none;
         border: 1px solid #ddd;
         outline: none;
     }
+#boton6{
 
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: monospace;
+    color: #ffffff;
+    background: #900;
+    display: inline-block;
+    padding: 15px;
+    text-decoration: none;
+    border: 0px;
+    cursor: pointer;
+    width: 20vw;
+    text-align: center;
+    margin: 10px;
+}
+
+#boton6:hover{
+    background: #600;
+}
+
+/*Fin de detalle*/    
     #btn_comprar{
         margin: 5px auto ;
         padding: 5px;
@@ -948,6 +950,8 @@ list-style-type: none;
     display: flex;
     flex-direction: column;
 }
+
+/***Stock - detalle*/
 
 .menu-top{
     list-style-type: none;
@@ -1389,4 +1393,46 @@ text-align: center
     text-align: justify;
     font-family: sans-serif;
     color: #777;
+}
+
+/*Botones de Carrito de compra -7 de mayo de 2018*/
+.grupo-botones{
+    width: 100%;
+    display:flex;
+    padding:0;
+    margin: 0;
+    list-style-type: none;
+    flex-wrap: wrap;
+}
+
+.expand{
+    width: 100%;
+}
+.boton-exp{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    color:white; 
+    font-size: 1.5em;
+    border-bottom: 2px solid #FFFFFF;
+    outline: none;
+    cursor: pointer;
+    background: #07f
+}
+.boton-exp:hover{
+    background: #09f;
+}
+
+@media screen and (min-width:700px){
+    .boton-exp{
+        width: 100%;
+           border-left: 2px solid #FFFFFF;
+    }
+    .grupo-botones{
+    flex-wrap: nowrap;
+    }
+    .expand{
+    width: 50%;
+}
+    
 }

@@ -1,0 +1,107 @@
+/**CSS de Administracion**/
+body{
+    margin 0;
+    padding: 0;
+    background: #003;
+}
+/*inicio de pagina de acceso - 30 de abril 2018*/
+
+/*pagina 1 - pagina principal*/
+.page1{
+    width: 600px;
+    margin: auto;
+    padding: 20px;
+    height: 100%;
+
+}
+
+#block-main{
+    padding: 10px;
+    margin: 10px auto;
+    width: 90%;
+    background: #000;
+    text-align: center;
+    color: #eee;
+}
+
+#block{
+    padding: 10px;
+    margin: 10px auto;
+    width: 90%;
+    background: #007;
+    text-align: center;
+   
+}
+#block a{
+     color: #eee;
+     text-decoration: none;
+ 
+    
+}
+#block:hover{
+    width: 70%;
+    background: #00a;
+}
+
+#block-close{
+    padding: 10px;
+    margin: 10px auto;
+    width: 90%;
+    background: #eee;
+    text-align: center;
+    
+}
+#block-close:hover{
+    background: #999;
+}
+
+#block-close a{
+    color: #006;
+    text-decoration: none;
+}
+
+/*Pagina 2 - principal*/
+
+.page2{
+    width: 600px;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    top: 100px;
+}
+
+#top{
+    color: #eee;
+    text-align: center;
+    padding: 10px;
+    background: #111222;
+    
+}
+.casillero{
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.casillero input{
+    width: 100%;
+    margin: 5px 10px;
+    padding: 10px;
+}
+
+#boton-casillero{
+    background: #006;
+    border: none;
+    color: #ddd;
+    font-size: 25px;
+    font-family:   serif;
+    font-weight: bolder;
+    margin:  20px auto;
+}
+
+#boton-casillero:hover{
+    width: 90%;
+    background: #009;
+    cursor: pointer;
+}
+
+/*Final de pagina de acceso - 30 de abril 2018*/
